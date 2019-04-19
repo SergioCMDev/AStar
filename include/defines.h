@@ -41,7 +41,7 @@
 #define MAX_DISTANCE_SEPARATION 12
 
 const int HORIZONTAL_COST = 1;
-const int VERTICAL_COST = 2;
+const int VERTICAL_COST = 1;
 
 
 struct KinematicSteering {

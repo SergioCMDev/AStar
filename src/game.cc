@@ -112,6 +112,7 @@ void Game::handleInput() {
 
 void Game::update(const uint32_t dt) {
 	world_.update(dt / slo_mo_);
+	render();
 }
 
 void Game::render() {

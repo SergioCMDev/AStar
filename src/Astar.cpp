@@ -119,6 +119,7 @@ void Astar::GetPath() {
 		Node nodeWithMinorF;
 		GetMinorFNode(listaAbierta, FMinor, nodeWithMinorF);
 		loading = true;
+		//wold
 		listaCerrada.push_back(nodeWithMinorF);
 		GetAdyacentes(nodeWithMinorF);
 		RemoveFromList(listaAbierta, nodeWithMinorF);
@@ -127,26 +128,27 @@ void Astar::GetPath() {
 			if (nodesAdyacentes[i]._transitable && !FoundInList(listaCerrada, nodesAdyacentes[i])) {
 
 				if (!FoundInList(listaAbierta, nodesAdyacentes[i])) {
-					//nodesAdyacentes[i]._parent = &nodeWithMinorF;
-					nodeWithMinorF._parent = &nodesAdyacentes[i];
+					nodesAdyacentes[i]._parent = &nodeWithMinorF;
+					////nodeWithMinorF._parent = &nodesAdyacentes[i];
 					int h = GetHeuristic(nodesAdyacentes[i], nodoDestino);
 					int g = GetGValue(nodeWithMinorF, nodesAdyacentes[i]);
 					nodesAdyacentes[i].Fvalue = g + h;
 					nodesAdyacentes[i].Gvalue = g;
 					nodesAdyacentes[i].Hvalue = h;
-					//FillValuesNode(minorF, nodesAdyacentes[i], nodoDestino);
 					listaAbierta.push_back(nodesAdyacentes[i]);
 				}
 				else {
 					Node nodoFromList = GetFromList(listaAbierta, nodesAdyacentes[i]);
 					if (nodoFromList.Gvalue < nodeWithMinorF.Gvalue) {
 						RemoveFromList(listaAbierta, nodeWithMinorF);
+											//nodesAdyacentes[i]._parent = &nodeWithMinorF;
 
 						nodoFromList._parent = &nodeWithMinorF;
+						//nodeWithMinorF._parent = &nodoFromList;
 						int g = GetGValue(nodoFromList, nodeWithMinorF);
 						nodeWithMinorF.Gvalue = g;
-						nodeWithMinorF.Fvalue = g + nodoFromList.Hvalue;
-						listaAbierta.push_back(nodeWithMinorF);
+						nodeWithMinorF.Fvalue = g + nodeWithMinorF._parent->Hvalue;
+						listaAbierta.push_back(nodoFromList);
 
 					}
 				}
