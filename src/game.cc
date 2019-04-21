@@ -125,17 +125,19 @@ void Game::render() {
 	s.render();
 	world_.render();
 	if (!astar.listaCerrada.empty()) {
-		for (std::vector<Node>::iterator it = astar.listaCerrada.begin(); it != astar.listaCerrada.end(); ++it)
+		std::vector<Node> camino = astar.GetCamino();
+		for (size_t i = camino.size() - 1; i > 0; --i)
 		{
 			Sprite s;
 			s.loadFromFile(GUARD);
-			s.setPosition(((Node)*it).posX, ((Node)*it).posY);
+			s.setPosition(camino.at(i).posX, camino.at(i).posY);
 			s.render();
 		}
-
 	}
 
 	DebugDraw::render();
 
 	SDL_RenderPresent(renderer);
 }
+
+

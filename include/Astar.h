@@ -17,15 +17,17 @@ public:
 	void GetPath();
 	std::vector<Node> listaCerrada;
 	bool loading = false;
+	Node GetFromList(std::vector<Node> &lista, Node node);
+	std::vector<Node> GetCamino();
 
 private:
+	void Astar::SetParent(Node &node, Node nodeparent);
 	int GetGValue(Node &nodo, Node nodeAdyacente);
 	int GetHeuristic(Node nodo, Node nodeDestino);
-	Node GetFromList(std::vector<Node> &lista, Node node);
 	bool FoundInList(std::vector<Node> &lista, Node &node);
 	void FillValuesNode(Node &nodo, Node &nodeAdyacente, Node NodeDestino);
 	void GetAdyacentes(Node nodo);
-	void GetMinorFNode(std::vector<Node> &listaAbierta, int &FMinor, Node &minorF);
+	Node GetMinorFNode(std::vector<Node> listaAbierta);
 	void CreatePathFromDestination(Node *nodoDestino, std::vector<Node> lista);
 	std::vector<Node> listaAbierta;
 	Node nodesAdyacentes[8];

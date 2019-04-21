@@ -17,27 +17,27 @@
 #include <Astar.h>
 
 class Game {
-  public:
-    Game() {};
-    ~Game() {};
+public:
+	Game() {};
+	~Game() {};
 
-    void init();
-    void start();
-    void shutdown();
+	void init();
+	void start();
+	void shutdown();
 	//std::vector<Node> listaCerrada;
 	Astar astar;
 
-  private:
-    void handleInput();
-    void update(const uint32_t dt);
-    void render();
+private:
+	void handleInput();
+	void update(const uint32_t dt);
+	void render();
 	int origenX = -1, origenY = -1, destinoX = -1, destinoY = -1;
-    bool quit_ = false;
-    Sprite fps_sprite_;
-    TTF_Font* font_ = nullptr;
-    World world_;
+	bool quit_ = false;
+	Sprite fps_sprite_;
+	TTF_Font* font_ = nullptr;
+	World world_;
 
-    int8_t slo_mo_ = 1;
+	int8_t slo_mo_ = 1;
 };
 
 #endif
