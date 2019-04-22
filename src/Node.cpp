@@ -16,17 +16,6 @@ Node::Node(int x, int y, bool destino, bool transitable) {
 	Gvalue = 0;
 }
 
-//Node::Node(int F, int G, int H, bool destino, bool transitable, Node parent)
-//Node::Node(int F, int G, int H, bool destino, bool transitable)
-//{
-//	Fvalue = F;
-//	Gvalue = G;
-//	Hvalue = H;
-//	_destino = destino;
-//	_transitable = transitable;
-//	//_parent = &parent;
-//}
-
 
 Node::~Node()
 {
@@ -40,5 +29,4 @@ void Node::clear() {
 	posY = std::numeric_limits<int>::max();;
 	_destino = false;
 	_transitable = false;
-	//_parent = NULL;
 }

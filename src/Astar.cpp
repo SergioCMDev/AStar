@@ -35,20 +35,7 @@ void Astar::CreatePathFromDestination(Node *nodoDestino, std::vector<Node> lista
 
 int Astar::GetGValue(Node &nodo, Node nodeAdyacente) {
 	int ActualG = HORIZONTAL_COST;
-	//if (((nodeAdyacente.posY > nodo.posY || nodeAdyacente.posY < nodo.posY) && nodeAdyacente.posX == nodo.posX) || //Check Above and below
-	//	((nodeAdyacente.posX > nodo.posX || nodeAdyacente.posX < nodo.posX) && nodeAdyacente.posY == nodo.posY)) {
-	//	ActualG = HORIZONTAL_COST;
-	//}
-	//else { //ITs diagonal
-
-	//	ActualG = VERTICAL_COST;
-	//}
-	int	gParent = 0;
-	//if (nodo._parent != NULL) {
-	//	gParent = nodo._parent->Gvalue;
-
-	//}
-	return ActualG + gParent;
+	return ActualG;
 }
 
 int Astar::GetHeuristic(Node nodo, Node nodeDestino) {
@@ -120,14 +107,6 @@ void Astar::GetPath() {
 	while (!FoundInList(listaCerrada, nodoDestino) || listaAbierta.empty()) {
 		int FMinor = std::numeric_limits<int>::max();
 		Node nodeWithMinorF;
-		//for (std::vector<Node>::iterator it = listaAbierta.begin(); it != listaAbierta.end(); ++it)
-		//{
-		//	int ActualFValueToCheck = ((Node)*it).Fvalue;
-		//	if (ActualFValueToCheck < FMinor) {
-		//		FMinor = ActualFValueToCheck;
-		//		nodeWithMinorF = ((Node)*it);
-		//	}
-		//}
 		for each (Node var in listaAbierta)
 		{
 			int ActualFValueToCheck = var.Fvalue;
@@ -221,10 +200,6 @@ std::vector<Node> Astar::GetCamino()
 	std::vector<Node> camino;
 	Node nodeDestino = listaCerrada.at(listaCerrada.size() - 1);
 	do {
-		/*Sprite s;
-		s.loadFromFile(GUARD);
-		s.setPosition(nodeDestino.posX, nodeDestino.posY);
-		s.render();*/
 		if (nodeDestino._parent != NULL) {
 			Node nodoFromList = GetFromList(listaCerrada, *nodeDestino._parent);
 
